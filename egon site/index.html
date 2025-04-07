@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EGON DZNS | Portfolio & Orders</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(-45deg, #1f0036, #002f4b, #4b0082, #0f2027, #2c5364);
+      background-size: 1000% 1000%;
+      animation: gradientBG 30s ease infinite;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      25% {background-position: 50% 100%;}
+      50% {background-position: 100% 50%;}
+      75% {background-position: 50% 0%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    nav {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 120px;
+      background: rgba(0,0,0,0.2);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 10px;
+      z-index: 999;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 20px 0;
+      text-decoration: none;
+      transition: 0.3s ease;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    .view-portfolio {
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffcc00);
+      background-size: 200% 200%;
+      color: #000;
+      font-weight: bold;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      animation: pulseGlow 3s infinite, glowMove 10s ease-in-out infinite;
+      box-shadow: 0 0 20px #fff;
+      z-index: 999;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px #fff, 0 0 25px #0ff; }
+      50% { box-shadow: 0 0 30px #ff00ff, 0 0 45px #0ff; }
+    }
+
+    @keyframes glowMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    main {
+      margin-left: 140px;
+      padding: 50px 30px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .form-section {
+      background: rgba(255,255,255,0.05);
+      border: 5px solid;
+      border-image: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff) 1;
+      animation: borderGlow 5s linear infinite;
+      padding: 20px 25px;
+      margin-top: 50px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+      max-width: 700px;
+    }
+
+    @keyframes borderGlow {
+      0% { border-image-source: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff); }
+      50% { border-image-source: linear-gradient(45deg, #ff00ff, #00ffff, #ffcc00); }
+      100% { border-image-source: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff); }
+    }
+
+    .form-section h2 {
+      margin-bottom: 20px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    form input, form textarea, form select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    form button {
+      padding: 10px 25px;
+      background: #00ffff;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    form button:hover {
+      background: #0ff;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    .qr-section {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .qr-section img {
+      max-width: 180px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #0ff;
+    }
+
+    .socials a {
+      display: inline-block;
+      margin: 10px;
+      color: #fff;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .socials a:hover {
+      color: #f0f;
+      text-shadow: 0 0 10px #f0f;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 80px;
+      padding: 30px;
+      background: rgba(0,0,0,0.3);
+    }
+
+    footer p {
+      margin: 5px;
+      color: #aaa;
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <button class="view-portfolio" onclick="window.open('https://discord.gg/F3Gk6xvyCv', '_blank')">🎨 View Portfolio</button>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#order">Order</a>
+    <a href="#socials">Socials</a>
+  </nav>
+
+  <main id="home">
+    <header>
+      <h1>Welcome to EGON DZNS</h1>
+      <p>"Where Creativity Meets Code – EGON DZNS Official Site"</p>
+    </header>
+
+    <div class="form-section" id="order">
+      <h2>Place Your Order</h2>
+      <form action="https://formspree.io/f/xpwpoqyz" method="POST">
+        <label>Your Email:
+          <input type="email" name="email" required />
+        </label>
+        <label>Game/Platform Name:
+          <input type="text" name="game" />
+        </label>
+        <label>Channel Name:
+          <input type="text" name="channel" />
+        </label>
+        <label>Design Title:
+          <input type="text" name="title" />
+        </label>
+        <label>Reference Design / YouTube Link:
+          <input type="url" name="reference" />
+        </label>
+        <label>Your Imagination / Remarks:
+          <textarea name="remarks" rows="3"></textarea>
+        </label>
+        <label>Transaction ID:
+          <input type="text" name="transaction_id" />
+        </label>
+        <label>Amount Paid (INR):
+          <input type="number" name="amount" />
+        </label>
+        <label>Payment Gateway Used:
+          <select name="gateway">
+            <option>Fampay</option>
+            <option>Paytm</option>
+            <option>PhonePe</option>
+            <option>Google Pay</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <button type="submit">Submit Order</button>
+      </form>
+      <div class="qr-section">
+        <h3>Scan & Pay</h3>
+        <p>UPI ID: <strong>ayush-777@fam</strong></p>
+        <img src="upi_qr.png" alt="UPI QR Code" />
+      </div>
+    </div>
+
+    <section id="about" style="margin-top: 50px;">
+      <h2>About Me</h2>
+      <p>🔥 EGON DZNS – About Me<br>
+      I'm Ayush, the creative force behind EGON DZNS. With a deep passion for graphic design, video editing, and web development, I specialize in creating visually striking content for gamers, content creators, and brands.
+      <br><br>
+      From custom thumbnails and banners to full-on motion graphics and interactive websites, I bring imagination to life through sleek visuals and clean code.
+      <br><br>
+      I work with tools like Photoshop, After Effects, Premiere Pro, and HTML/C# — blending design and tech into powerful digital experiences.<br>
+      Let’s build something awesome together ✨</p>
+    </section>
+
+    <section id="socials" class="socials" style="margin-top: 40px;">
+      <h2>My Socials</h2>
+      <a href="https://www.instagram.com/why.ayush06" target="_blank">Instagram</a>
+      <a href="https://www.youtube.com/@BRT-EGON" target="_blank">YouTube</a>
+      <a href="https://discord.com/users/why.ayuhs06" target="_blank">Discord</a>
+    </section>
+
+    <footer>
+      <p>All rights reserved © EGON DZNS</p>
+      <p>Made with ❤️ by EGON — Creating visual experiences for creators</p>
+    </footer>
+  </main>
+
+  <!-- Load particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80 },
+        shape: { type: "triangle" },
+        size: { value: 4 },
+        move: {
+          speed: 2,
+          direction: "none",
+          out_mode: "bounce"
+        },
+        color: { value: ["#00ffff", "#ff00ff", "#ffffff", "#00ff99", "#ffcc00"] },
+        opacity: { value: 0.5 }
+      },
+      interactivity: {
+        events: {
+          onhover: {
+            enable: true,
+            mode: "repulse"
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
